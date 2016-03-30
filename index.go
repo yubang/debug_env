@@ -21,7 +21,7 @@ func handleHttp(w http.ResponseWriter, r *http.Request){
   for _,t := range apiData{
 	if t.([]interface{})[0].(string) == u.Path{
 		handleUrl = t.([]interface{})[1].(string)
-		break	
+		
 	}
 	
   }	
@@ -55,8 +55,8 @@ func handleHttp(w http.ResponseWriter, r *http.Request){
 func StartServer(){
 	
     fmt.Println("服务器启动！")
-    fmt.Print("监听域名：" + configData["host"].(string))
-    fmt.Print("监听端口：" + configData["port"].(string))	
+    fmt.Println("监听域名：" + configData["host"].(string))
+    fmt.Println("监听端口：" + configData["port"].(string))	
     http.HandleFunc("/", handleHttp)
     http.ListenAndServe(configData["host"].(string)+":"+configData["port"].(string), nil)	
 }
