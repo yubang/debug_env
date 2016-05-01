@@ -1,6 +1,6 @@
 {
 	"host": "0.0.0.0",
-	"port": "8080",
-	"workspace": "",
-	"api_change_to_file_config":""
+	"port": "10000",
+	"workspace": "/home/yubang/project/community_name_card",
+	"api_change_to_file_config":"/home/yubang/project/community_name_card/src/api.txt"
 }

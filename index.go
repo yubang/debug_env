@@ -7,7 +7,7 @@ import(
     "io/ioutil"
     "encoding/json"
     "net/url"
-    "strings"	
+    "strings"
 )
 
 var configData map[string]interface{}
@@ -19,9 +19,27 @@ func handleHttp(w http.ResponseWriter, r *http.Request){
    handleUrl := u.Path
    // 处理是否匹配API接口
   for _,t := range apiData{
-	if t.([]interface{})[0].(string) == u.Path{
+	
+	path1 := strings.Split(t.([]interface{})[0].(string), "/")
+	path2 := strings.Split(u.Path, "/")
+	
+	is_sign := true
+	for path_index, path_str := range path1{
+		if len(path2) <= path_index{
+			// 防止下标越界
+			is_sign = false
+			break
+		}
+		if path_str == "*"{
+			continue
+		}
+		if path_str != path2[path_index]{
+			is_sign = false
+		}
+	}
+	
+	if is_sign{
 		handleUrl = t.([]interface{})[1].(string)
-		
 	}
 	
   }	
